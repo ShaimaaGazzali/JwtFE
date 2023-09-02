@@ -7,7 +7,7 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-link active" aria-current="page" routerLink="/login" *ngIf="!isUserLogin">Login</a>
-                <!-- <a class="nav-link" routerLink="/register" *ngIf="!isUserLogin">Registrar</a> -->
+                <a class="nav-link" routerLink="/register" *ngIf="!isUserLogin">Registrar</a>
                 <a class="nav-link" routerLink="/register" *ngIf="isUserLogin && isAdmin">Add Manager</a>
                 <a class="nav-link" routerLink="/register" *ngIf="isUserLogin && isManager">Add Employee</a>
                 <a class="nav-link" [class.disabled]="isEmployee" routerLink="/allUserManagement" *ngIf="isUserLogin && isAdmin">All Users</a>
