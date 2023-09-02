@@ -29,8 +29,8 @@ export class LoginComponent implements OnInit {
       if(res.responseCode == 1){
         localStorage.setItem(Constants.USER_KEY, JSON.stringify(res.dataSet));
         let user = res.dataSet as User;
-        if(user.role =="Admin"){
-          this.router.navigate(['/allUserManagement']);
+        if(user.role =="Employee"){
+          this.router.navigate(['/taskList']);
         }else{
           this.router.navigate(['/userManagement']);
         }

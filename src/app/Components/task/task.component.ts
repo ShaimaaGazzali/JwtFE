@@ -7,17 +7,18 @@ import { User } from '../../Models/user';
 //import {NgToastModule} from 'ng-angular-popup';
 
 @Component({
-  selector: 'app-department',
-  templateUrl: './department.component.html',
-  styleUrls: ['./department.component.css']
+  selector: 'app-task',
+  templateUrl: './task.component.html',
+  styleUrls: ['./task.component.css']
 })
-export class DepartmentComponent implements OnInit {
+export class TaskComponent implements OnInit {
   success:boolean=false;
-  //roles: Role[] = [];
-  managers:User[]=[];
+  employees:User[]=[];
   public form = this.formBuilder.group({
     name: ['', Validators.required],
-    manager: ['',  Validators.required]
+    description: [''],
+    submissionDate: [''],
+    employee: ['']
   });
   constructor(private formBuilder: FormBuilder, private userService: UserService, private appService: AppService) { }
 
@@ -27,11 +28,15 @@ export class DepartmentComponent implements OnInit {
 
   create(){
     let name = this.form.controls['name'].value;
-    let manager = this.form.controls['manager'].value;
+    let description = this.form.controls['description'].value;
+    let submissionDate = this.form.controls['submissionDate'].value;
+    let employee = this.form.controls['employee'].value;
 
-    this.appService.createDepartment(name, manager).subscribe((res: any) => {
+    this.appService.createTask(name, description,submissionDate,employee).subscribe((res: any) => {
       this.form.controls["name"].setValue("");
-      this.form.controls["manager"].setValue("");
+      this.form.controls["description"].setValue("");
+      this.form.controls["submissionDate"].setValue("");
+      this.form.controls["employee"].setValue("");
 
 
       this.success=true;
@@ -43,18 +48,8 @@ export class DepartmentComponent implements OnInit {
 
   getManagers(){
     this.userService.getUserList().subscribe(m => {
-      this.managers = m;
+      this.employees = m;
     })
   }
-
-  // onRoleChange(rol: string){
-  //   this.roles.forEach(x => {
-  //     if(x.role == rol){
-  //       x.isSelected = true;
-  //     }else{
-  //       x.isSelected = false;
-  //     }
-  //   })
-  // }
 
 }

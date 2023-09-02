@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col">
+            <div class="card">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">SubmissionDate</th>
+                            <th scope="col">Employee</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let t of taskList; let i = index">
+                            <th scope="row">{{ i + 1 }}</th>
+                            <td>{{ t.name }}</td>
+                            <td>{{ t.description }}</td>
+                            <td>{{ t.submissionDate }}</td>
+                            <td>{{ t.employee }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>

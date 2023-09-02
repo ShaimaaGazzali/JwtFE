@@ -7,12 +7,21 @@
                         <label for="exampleInputName " class="form-label ">Name</label>
                         <input type="text" class="form-control" formControlName="name" id="exampleInputNameReg" autocomplete="off">
                     </div>
+                    <div class="mb-3 ">
+                        <label for="exampleInputName " class="form-label ">Description</label>
+                        <input type="text" class="form-control" formControlName="description" id="exampleInputNameReg" autocomplete="off">
+                    </div>
+                    <div class="mb-3 ">
+                        <label for="exampleInputName " class="form-label ">SubmissionDate</label>
+                        <input type="text" class="form-control" formControlName="submissionDate" id="exampleInputNameReg" autocomplete="off">
+                    </div>
+
                     <div class="mb-3">
-                        <label for="exampleInputman" class="form-label ">Manager</label>
+                        <label for="exampleInputman" class="form-label ">Employee</label>
                         <div class="col">
                             <div  >
-                                <select class="form-select" formControlName="manager">
-                                    <option *ngFor="let m of managers"  [ngValue]="m.id">{{m.fullName}}</option>
+                                <select class="form-select" formControlName="employee">
+                                    <option *ngFor="let m of employees"  [ngValue]="m.id">{{m.fullName}}</option>
                                 </select>
                             </div>
                         </div>

@@ -11,6 +11,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { UserManagementComponent } from './Components/user-management/user-management.component';
 import { AllUserManagementComponent } from './Components/all-user-management/all-user-management.component';
 import { DepartmentComponent } from './Components/department/department.component';
+import { TaskComponent } from './Components/task/task.component';
+import { TaskListComponent } from './Components/task-list/task-list.component';
 //import {NgToastModule} from 'ng-angular-popup';
 
 @NgModule({
@@ -20,7 +22,9 @@ import { DepartmentComponent } from './Components/department/department.componen
     LoginComponent,
     RegisterComponent,
     DepartmentComponent,
+    TaskComponent,
     UserManagementComponent,
+    TaskListComponent,
     AllUserManagementComponent
   ],
   imports: [

@@ -7,6 +7,7 @@ import { User } from '../Models/user';
 import { Observable } from 'rxjs';
 import { Constants } from '../helper/constants';
 import { Role } from '../Models/role';
+import { Task } from '../Models/task';
 
 @Injectable({
   providedIn: 'root'
@@ -38,60 +39,40 @@ export class AppService {
     return this.httpClient.post<ResponseModel>(this.baseUrl + "App/CreateDepartment", body, {headers: header});
   }
 
-  // getAllUsers(){
-  //   let userInfo = JSON.parse(localStorage.getItem(Constants.USER_KEY));
-  // const header= new HttpHeaders({
-  //   'Authorization': `Bearer ${userInfo?.token}`
-  // });
+  
 
-  //   return this.httpClient.get<ResponseModel>(this.baseUrl + "user/GetAllUsers", {headers: header}).pipe(map(res => {
-  //     let userList = new Array<User>();
-  //     if(res.responseCode == ResponseCode.OK){
-  //       if(res.dataSet){
-  //         res.dataSet.map((x: User) => {
-  //           userList.push(new User(x.fullName, x.email, x.userName, x.role));
-  //         });
-  //       }
-  //     }
-  //     return userList;
-  //   }));
-  // }
+  createTask(name: string, description:string,submissionDate:string,employee:number){
+    let userInfo = JSON.parse(localStorage.getItem(Constants.USER_KEY));
+    const header= new HttpHeaders({
+      'Authorization': `Bearer ${userInfo?.token}`
+    });
 
-  // getAllRoles(){
-  //   let userInfo = JSON.parse(localStorage.getItem(Constants.USER_KEY));
-  // const header= new HttpHeaders({
-  //   'Authorization': `Bearer ${userInfo?.token}`
-  // });
+    const body = {
+      Name: name,
+      Description:description,
+      SubmissionDate:submissionDate,
+      EmployeeId: employee,
 
-  //   return this.httpClient.get<ResponseModel>(this.baseUrl + "user/GetRoles", {headers: header}).pipe(map(res => {
-  //     let roleList = new Array<Role>();
-  //     if(res.responseCode == ResponseCode.OK){
-  //       if(res.dataSet){
-  //         res.dataSet.map((x: string) => {
-  //           roleList.push(new Role(x));
-  //         });
-  //       }
-  //     }
-  //     return roleList;
-  //   }));
-  // }
+    }
+    return this.httpClient.post<ResponseModel>(this.baseUrl + "App/CreateTask", body, {headers: header});
+  }
 
-  // getUserList(){
-  //   let userInfo = JSON.parse(localStorage.getItem(Constants.USER_KEY));
-  // const header= new HttpHeaders({
-  //   'Authorization': `Bearer ${userInfo?.token}`
-  // });
+  geTaskList(){
+    let userInfo = JSON.parse(localStorage.getItem(Constants.USER_KEY));
+  const header= new HttpHeaders({
+    'Authorization': `Bearer ${userInfo?.token}`
+  });
 
-  //   return this.httpClient.get<ResponseModel>(this.baseUrl + "user/GetUserList", {headers: header}).pipe(map(res => {
-  //     let userList = new Array<User>();
-  //     if(res.responseCode == ResponseCode.OK){
-  //       if(res.dataSet){
-  //         res.dataSet.map((x: User) => {
-  //           userList.push(new User(x.fullName, x.email, x.userName, x.role));
-  //         });
-  //       }
-  //     }
-  //     return userList;
-  //   }));
-  // }
+    return this.httpClient.get<ResponseModel>(this.baseUrl + "App/GetTaskList", {headers: header}).pipe(map(res => {
+      let taskList = new Array<Task>();
+      if(res.responseCode == ResponseCode.OK){
+        if(res.dataSet){
+          res.dataSet.map((x: Task) => {
+            taskList.push(new Task(x.name, x.description, x.submissionDate, x.employee,x.id));
+          });
+        }
+      }
+      return taskList;
+    }));
+  }
 }
