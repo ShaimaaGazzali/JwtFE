@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <!-- <a class="navbar-brand" href="#">Ej2023</a> -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link active" aria-current="page" routerLink="/login" *ngIf="!isUserLogin">Login</a>
+                <!-- <a class="nav-link" routerLink="/register" *ngIf="!isUserLogin">Registrar</a> -->
+                <a class="nav-link" routerLink="/register" *ngIf="isUserLogin && isAdmin">Add Manager</a>
+                <a class="nav-link" routerLink="/register" *ngIf="isUserLogin && isManager">Add Employee</a>
+                <a class="nav-link" [class.disabled]="isEmployee" routerLink="/allUserManagement" *ngIf="isUserLogin && isAdmin">All Users</a>
+                <a class="nav-link" routerLink="/userManagement" *ngIf="isUserLogin && isAdmin">Managers</a>
+                <a class="nav-link" routerLink="/userManagement" *ngIf="isUserLogin && isManager">Employees</a>
+
+                <a class="nav-link" routerLink="/department" *ngIf="isUserLogin && isAdmin">Add Department</a>
+
+                <a class="nav-link" routerLink="/login" (click)="onLogout()" *ngIf="isUserLogin">Logout</a>
+            </div>
+        </div>
+    </div>
+</nav>
